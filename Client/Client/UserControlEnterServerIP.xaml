@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Client.UserControlEnterServerIP"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="Transparent"
+             Height="187"  Width="521"
+             Margin="-110,-125,-100,0"
+             Loaded="Window_Loaded">
+    <Grid Height="150"  Width="360" >
+        <TextBox Name="ServerIPText" HorizontalAlignment="Left" Height="23" Margin="115,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" KeyDown="OnKeyDownHandler"/>
+        
+        <Label Content="Server IP" HorizontalAlignment="Left" Margin="102,15,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="30" Foreground="White" FontWeight="Bold"/>
+        
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="139,105,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.074,0.01" FontFamily="Comic Sans MS" Click="Submit_Click"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,201 @@
+﻿<UserControl x:Class="Client.UserControlTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="650"
+             Height="450" Width="650"
+             Background="White"             
+             Loaded="Window_Loaded">
+    
+    <Grid Height="450" Name="Grid1" Width="640" ShowGridLines="True" RenderTransformOrigin="0.381,0.431">
+        <Image Source="Images\TableBackground.jpg" Height="452" Width="659" HorizontalAlignment="Left" Margin="-9,-2,-10,0" Stretch="Fill" VerticalAlignment="Top"  />
+        <!--Head ellipse and title-->
+        <Label Content="Texas Hold'em!" Height="28" HorizontalAlignment="Left" Margin="261,-2,0,0" Name="label2" VerticalAlignment="Top" Width="113" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White"/>
+        <Label Content="Pot:" Height="28" HorizontalAlignment="Left" Margin="25,7,0,0" VerticalAlignment="Top" Width="40" FontSize="14" FontFamily="Comic Sans MS"   Foreground="White"/>
+        <Label Content="" Height="28" HorizontalAlignment="Left" Margin="7,36,0,0" Name="PotLabel" VerticalAlignment="Top" Width="71" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White"/>
+
+        <Label Content="Min Bet:" Height="28" HorizontalAlignment="Left" Margin="92,5,0,0" VerticalAlignment="Top" Width="64" FontSize="14" FontFamily="Comic Sans MS"   Foreground="White"/>
+        <Label Content="" Height="28" HorizontalAlignment="Left" Margin="88,33,0,0" Name="MinBetLabel" VerticalAlignment="Top" Width="71" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White"/>
+
+        <Button Name="KickButton" Focusable="False" Height="30" Width="43" Margin="0,7,18,413"  BorderBrush="#83FFFFFF" HorizontalAlignment="Right" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Click="Kick_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Red" Offset="0" />
+                    <GradientStop Color="Black" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+            Kick!
+        </Button>
+        <Ellipse      
+        Height="300"
+        Width="600"
+        StrokeThickness="10"
+        Stroke="Brown" Margin="12,27,28,123" RenderTransformOrigin="0.509,0.466" >
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="Images\fabric.jpg"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <!--Yellow ellipse and players names-->
+        <Canvas Name="HeadCanvas" Height="450" Width="650">
+            <!--Player1-->
+            <Ellipse      
+        Height="40"
+        Width="60"
+        StrokeThickness="3"
+        Stroke="Yellow" Margin="22,156,558,254">
+            </Ellipse>
+            <Button Name="labelPlayer1Button" Focusable="False" Canvas.Left="37" Canvas.Top="160" BorderBrush="Transparent" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="labelPlayer1Button_Click" >
+                <Label Content="{Binding ElementName=Player1Name, Path=Content}" Height="40" Name="labelPlayer1" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" HorizontalAlignment="Left" Width="60" Canvas.Left="37" Canvas.Top="160" />
+            </Button>
+            <Label Content="{Binding ElementName=Player1Name, Path=Content}" Height="40" Name="Role1" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" HorizontalAlignment="Left" Width="60" Canvas.Left="25" Canvas.Top="115" />
+            <Image Source="{Binding ElementName=Card11, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Name="Player1FirstCard" Stretch="Fill" VerticalAlignment="Top" Canvas.Left="129" Canvas.Top="143"  />
+            <Image Source="{Binding ElementName=Card12, Path=Source}" Height="50" Width="38" HorizontalAlignment="Right" Margin="85,143,517,261" Name="Player1SecondCard" Stretch="Fill" VerticalAlignment="Top"  />
+            <!--Dealer-->
+            <Ellipse      
+        Height="40"
+        Width="60"
+        StrokeThickness="3"
+        Stroke="Yellow" Margin="275,38,305,372">
+            </Ellipse>
+            <Label Content="Dealer" Height="40" HorizontalAlignment="Left" Margin="279,43,0,0" Name="labelDealer" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Width="60" />
+            <Image Source="{Binding ElementName=CardFlop1, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Margin="193,88,409,316" Name="CardFlop1" Stretch="Fill" VerticalAlignment="Top"  />
+            <Image Source="{Binding ElementName=CardFlop2, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Margin="236,88,366,316" Name="CardFlop2" Stretch="Fill" VerticalAlignment="Top"  />
+            <Image Source="{Binding ElementName=CardFlop3, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Margin="279,88,323,316" Name="CardFlop3" Stretch="Fill" VerticalAlignment="Top"  />
+            <Image Source="{Binding ElementName=CardRiver, Path=Source}"  Height="50" Width="38" HorizontalAlignment="Left" Margin="322,88,280,316"  Name="CardRiver" Stretch="Fill" VerticalAlignment="Top"  />
+            <Image Source="{Binding ElementName=CardTurn, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Margin="365,88,237,316" Name="CardTurn" Stretch="Fill" VerticalAlignment="Top"  />
+            <!--Player2-->
+            <Ellipse      
+        Height="40"
+        Width="60"
+        StrokeThickness="3"
+        Stroke="Yellow" Margin="171,259,409,151">
+            </Ellipse>
+            <Button Name="labelPlayer2Button" Focusable="False" Canvas.Left="187" Canvas.Top="262" BorderBrush="Transparent" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="labelPlayer2Button_Click">
+                <Label Content="{Binding ElementName=PlayerName, Path=Content}" Height="40" HorizontalAlignment="Left" Name="labelPlayer2" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Width="60" Canvas.Left="187" Canvas.Top="262" />
+            </Button>
+            <Label Content="{Binding ElementName=PlayerName, Path=Content}" Height="40" HorizontalAlignment="Left" Name="Role2" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Width="60" Canvas.Left="111" Canvas.Top="243" />
+            <Image Source="{Binding ElementName=Card21, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Name="Player2FirstCard" Stretch="Fill" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="208" />
+            <Image Source="{Binding ElementName=Card22, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Name="Player2SecondCard" Stretch="Fill" VerticalAlignment="Top" Canvas.Left="171" Canvas.Top="208" />
+            <!--Player3-->
+            <Ellipse      
+        Height="40"
+        Width="60"
+        StrokeThickness="3"
+        Stroke="Yellow" Margin="390,259,190,151">
+            </Ellipse>
+            <Button Name="labelPlayer3Button" Focusable="False" Canvas.Left="406" Canvas.Top="262" BorderBrush="Transparent" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="labelPlayer3Button_Click">
+                <Label Content="{Binding ElementName=PlayerName, Path=Content}" Height="40" HorizontalAlignment="Left" Name="labelPlayer3" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Width="60" Canvas.Left="406" Canvas.Top="262" />
+            </Button>
+            <Label Content="{Binding ElementName=PlayerName, Path=Content}" Height="40" HorizontalAlignment="Left" Name="Role3" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Width="60" Canvas.Left="330" Canvas.Top="268" />
+            <Image Source="{Binding ElementName=Card31, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Margin="408,203,194,196" Name="Player3FirstCard" Stretch="Fill" VerticalAlignment="Top" />
+            <Image Source="{Binding ElementName=Card32, Path=Source}" Height="50" Width="38" HorizontalAlignment="Right" Name="Player3SecondCard" Stretch="Fill" VerticalAlignment="Top" Canvas.Left="367" Canvas.Top="203" />
+            <!--Player4-->
+            <Ellipse      
+        Height="40"
+        Width="60"
+        StrokeThickness="3"
+        Stroke="Yellow" Margin="543,156,37,254">
+            </Ellipse>
+            <Button Name="labelPlayer4Button" Focusable="False" Canvas.Left="556" Canvas.Top="162" BorderBrush="Transparent" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="labelPlayer4Button_Click">
+                <Label Content="{Binding ElementName=PlayerName, Path=Content}" Height="40" HorizontalAlignment="Left" Name="labelPlayer4" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Width="60" Canvas.Left="556" Canvas.Top="162" />                
+            </Button>
+            <Label Content="{Binding ElementName=PlayerName, Path=Content}" Height="40" HorizontalAlignment="Left" Name="Role4" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Width="60" Canvas.Left="534" Canvas.Top="196" />
+            <Image Source="{Binding ElementName=Card41, Path=Source}" Height="50" Width="38" HorizontalAlignment="Left" Margin="500,138,102,261" Name="Player4FirstCard" Stretch="Fill" VerticalAlignment="Top" />
+            <Image Source="{Binding ElementName=Card42, Path=Source}" Height="50" Width="38" HorizontalAlignment="Right" Margin="462,138,140,261" Name="Player4SecondCard" Stretch="Fill" VerticalAlignment="Top">
+            </Image>
+            <!-- Deck -->
+            <Image  HorizontalAlignment="Left" Name="Deck1" Stretch="Fill" VerticalAlignment="Top"  RenderTransformOrigin="0,0" Canvas.Left="431" Canvas.Top="54"  Height="50" Width="38"/>            
+            <Image  HorizontalAlignment="Left" Name="Deck2" Stretch="Fill" VerticalAlignment="Top" RenderTransformOrigin="0,0"  Canvas.Left="424" Canvas.Top="52"  Height="50" Width="38"/>
+            
+            <!--Chat box-->
+            
+            <TextBox Name="ReceiveChatTextBox" Height="64" Canvas.Left="10" Canvas.Top="316" Width="180" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.CanContentScroll="True" 
+                     IsReadOnly="True"
+                     Background="Black"
+                     Foreground="White"
+                     />
+
+            <Button Height="30" Width="46" Focusable="False" BorderBrush="#83FFFFFF" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Click="Send_Click" Canvas.Left="11" Canvas.Top="381">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Green" Offset="0"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                Send
+            </Button>
+            <TextBox Name="SendChatTextBox" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" BorderThickness="2" Canvas.Top="383" Canvas.Left="62" KeyDown="OnKeyDownHandler" Background="Black" Foreground="White" />
+            <Label Content="Chat" Height="28" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" Width="39" Canvas.Left="72" Canvas.Top="283" Foreground="White"/>
+            <!--Game events-->
+            <Label Content="Game Events" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Canvas.Left="274" Canvas.Top="322" Foreground="White" />
+            <TextBox Name="ReceivedGameEventsTextBox" Height="64" Canvas.Left="223" Canvas.Top="347" Width="180" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.CanContentScroll="True" 
+                     IsReadOnly="True"
+                     Background="Black"
+                     Foreground="White"
+                     />
+            
+            <!--Buttons-->
+            <Border BorderBrush="Black" BorderThickness="2" Height="100"  Margin="425,312,16,38" Name="border1">
+                <Grid Height="97" Name="mainGrid">
+                    <Button Name="RaiseButton" Focusable="False"  Height="30" Margin="1,0,0,67" BorderBrush="#83FFFFFF" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Click="Raise_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="BlueViolet" Offset="0"/>
+                                <GradientStop Color="Black" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        Raise
+                    </Button>
+                    <Button Name="CallButton" Focusable="False" Height="30" Margin="0,28,95,38" BorderBrush="#83FFFFFF" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Click="Call_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="GreenYellow" Offset="0"/>
+                                <GradientStop Color="Black" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        Call
+                    </Button>
+                    <Button Name="CheckButton" Focusable="False"  Height="30" Width="99" Margin="0,28,0,38" BorderBrush="#83FFFFFF" HorizontalAlignment="Right" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Click="Check_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="AntiqueWhite" Offset="0" />
+                                <GradientStop Color="Black" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        Check
+                    </Button>
+                    <Button Name="FoldButton" Focusable="False" Height="30" Width="100" Margin="0,52,95,6" BorderBrush="#83FFFFFF" HorizontalAlignment="Right" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Click="Fold_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="SkyBlue" Offset="0" />
+                                <GradientStop Color="Black" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        Fold
+                    </Button>
+                    <Button Name="ExitButton" Focusable="False" Height="30" Width="100" Margin="0,52,-1,6"  BorderBrush="#83FFFFFF" HorizontalAlignment="Right" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Click="Exit_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Red" Offset="0" />
+                                <GradientStop Color="Black" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        Exit
+                    </Button>
+                </Grid>
+            </Border>
+            <!--Who's turn box-->
+            <Label Content="Who's turn?" Height="28" HorizontalAlignment="Left" Name="labelDealerName" VerticalAlignment="Top" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Canvas.Left="462" />
+            
+        </Canvas>
+        <Label x:Name="CurrentPlayerLabel" FontSize="14" FontFamily="Comic Sans MS"  Foreground="White" Margin="468,26,88,0" VerticalAlignment="Top" Height="44"/>
+    </Grid>
+</UserControl>

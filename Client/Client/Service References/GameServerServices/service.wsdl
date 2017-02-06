@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GameServerServices" targetNamespace="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="TCPBinding_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="3600000">
+          </wsrm:InactivityTimeout>
+          <wsrm:AcknowledgementInterval Milliseconds="200">
+          </wsrm:AcknowledgementInterval>
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/Imports">
+      <xsd:import namespace="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/TexasHoldemDBWCF" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Game_Server" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGameServerServices_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_CreateNewTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewTable" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_CreateNewTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_DeleteTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTable" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_DeleteTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_JoinIntoTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinIntoTable" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_JoinIntoTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinIntoTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_LeaveTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveTable" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_LeaveTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_GetAllGamesTables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGamesTables" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_GetAllGamesTables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGamesTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_GetCurrentBalance_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentBalance" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_GetCurrentBalance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_UpdateBalance_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBalance" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_UpdateBalance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_SendChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_SendChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_PlayerIsReadyToPlay_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerIsReadyToPlay" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_PlayerIsReadyToPlay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerIsReadyToPlayResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Check_InputMessage">
+    <wsdl:part name="parameters" element="tns:Check" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Check_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Fold_InputMessage">
+    <wsdl:part name="parameters" element="tns:Fold" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Fold_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FoldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Call_InputMessage">
+    <wsdl:part name="parameters" element="tns:Call" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Call_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CallResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Raise_InputMessage">
+    <wsdl:part name="parameters" element="tns:Raise" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_Raise_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RaiseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_KickPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:KickPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_KickPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:KickPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyPlayerJoinedTable_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayerJoinedTable" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyBlindsChanged_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyBlindsChanged" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyPlayersRules_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayersRules" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyPlayerLeftTable_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayerLeftTable" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyNextPlayerToPlay_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyNextPlayerToPlay" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyPlayerFold_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayerFold" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_SendCardToPlayer_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendCardToPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_UpdateMessageInChat_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMessageInChat" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyPlayerKicked_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayerKicked" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyPlayerAction_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPlayerAction" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_RevealCardsOnTable_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RevealCardsOnTable" />
+  </wsdl:message>
+  <wsdl:message name="IGameServerServices_NotifyWinners_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyWinners" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IGameServerServices">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Register">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Register" message="tns:IGameServerServices_Register_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/RegisterResponse" message="tns:IGameServerServices_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Login">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Login" message="tns:IGameServerServices_Login_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/LoginResponse" message="tns:IGameServerServices_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CreateNewTable">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/CreateNewTable" message="tns:IGameServerServices_CreateNewTable_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/CreateNewTableResponse" message="tns:IGameServerServices_CreateNewTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteTable">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/DeleteTable" message="tns:IGameServerServices_DeleteTable_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/DeleteTableResponse" message="tns:IGameServerServices_DeleteTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="JoinIntoTable">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/JoinIntoTable" message="tns:IGameServerServices_JoinIntoTable_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/JoinIntoTableResponse" message="tns:IGameServerServices_JoinIntoTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LeaveTable">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/LeaveTable" message="tns:IGameServerServices_LeaveTable_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/LeaveTableResponse" message="tns:IGameServerServices_LeaveTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAllGamesTables">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/GetAllGamesTables" message="tns:IGameServerServices_GetAllGamesTables_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/GetAllGamesTablesResponse" message="tns:IGameServerServices_GetAllGamesTables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCurrentBalance">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/GetCurrentBalance" message="tns:IGameServerServices_GetCurrentBalance_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/GetCurrentBalanceResponse" message="tns:IGameServerServices_GetCurrentBalance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateBalance">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/UpdateBalance" message="tns:IGameServerServices_UpdateBalance_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/UpdateBalanceResponse" message="tns:IGameServerServices_UpdateBalance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendChatMessage">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/SendChatMessage" message="tns:IGameServerServices_SendChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/SendChatMessageResponse" message="tns:IGameServerServices_SendChatMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PlayerIsReadyToPlay">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/PlayerIsReadyToPlay" message="tns:IGameServerServices_PlayerIsReadyToPlay_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/PlayerIsReadyToPlayResponse" message="tns:IGameServerServices_PlayerIsReadyToPlay_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Check">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Check" message="tns:IGameServerServices_Check_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/CheckResponse" message="tns:IGameServerServices_Check_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Fold">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Fold" message="tns:IGameServerServices_Fold_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/FoldResponse" message="tns:IGameServerServices_Fold_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Call">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Call" message="tns:IGameServerServices_Call_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/CallResponse" message="tns:IGameServerServices_Call_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Raise">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Raise" message="tns:IGameServerServices_Raise_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/RaiseResponse" message="tns:IGameServerServices_Raise_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="KickPlayer">
+      <wsdl:input wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/KickPlayer" message="tns:IGameServerServices_KickPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/KickPlayerResponse" message="tns:IGameServerServices_KickPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayerJoinedTable">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerJoinedTable" message="tns:IGameServerServices_NotifyPlayerJoinedTable_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyBlindsChanged">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyBlindsChanged" message="tns:IGameServerServices_NotifyBlindsChanged_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayersRules">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayersRules" message="tns:IGameServerServices_NotifyPlayersRules_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayerLeftTable">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerLeftTable" message="tns:IGameServerServices_NotifyPlayerLeftTable_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyNextPlayerToPlay">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyNextPlayerToPlay" message="tns:IGameServerServices_NotifyNextPlayerToPlay_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayerFold">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerFold" message="tns:IGameServerServices_NotifyPlayerFold_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendCardToPlayer">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/SendCardToPlayer" message="tns:IGameServerServices_SendCardToPlayer_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateMessageInChat">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/UpdateMessageInChat" message="tns:IGameServerServices_UpdateMessageInChat_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayerKicked">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerKicked" message="tns:IGameServerServices_NotifyPlayerKicked_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyPlayerAction">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerAction" message="tns:IGameServerServices_NotifyPlayerAction_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RevealCardsOnTable">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/RevealCardsOnTable" message="tns:IGameServerServices_RevealCardsOnTable_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyWinners">
+      <wsdl:output wsaw:Action="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyWinners" message="tns:IGameServerServices_NotifyWinners_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TCPBinding" type="tns:IGameServerServices">
+    <wsp:PolicyReference URI="#TCPBinding_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Register">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewTable">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/CreateNewTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTable">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/DeleteTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinIntoTable">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/JoinIntoTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeaveTable">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/LeaveTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGamesTables">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/GetAllGamesTables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentBalance">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/GetCurrentBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBalance">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/UpdateBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendChatMessage">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/SendChatMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerIsReadyToPlay">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/PlayerIsReadyToPlay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Check" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fold">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Fold" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Call">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Call" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Raise">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/Raise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KickPlayer">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/KickPlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPlayerJoinedTable">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerJoinedTable" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBlindsChanged">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyBlindsChanged" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPlayersRules">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayersRules" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPlayerLeftTable">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerLeftTable" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyNextPlayerToPlay">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyNextPlayerToPlay" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPlayerFold">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerFold" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCardToPlayer">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/SendCardToPlayer" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMessageInChat">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/UpdateMessageInChat" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPlayerKicked">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerKicked" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPlayerAction">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyPlayerAction" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevealCardsOnTable">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/RevealCardsOnTable" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyWinners">
+      <soap12:operation soapAction="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/IGameServerServices/NotifyWinners" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GameServerServices">
+    <wsdl:port name="TCPBinding" binding="tns:TCPBinding">
+      <soap12:address location="net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://10.0.0.1:8988/Game_Server/GameServerServices/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

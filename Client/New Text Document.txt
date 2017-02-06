@@ -1,0 +1,6 @@
+set card sent from server - improve
+add players to table - improve
+state machine - 
+
+172.20.74.125
+

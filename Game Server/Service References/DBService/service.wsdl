@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TexasHoldemDBService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/TexasHoldemDBWCF" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITexasHoldemDB_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_checkIfExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:checkIfExist" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_checkIfExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:checkIfExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_CreateTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTable" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_CreateTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_GetID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetID" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_GetID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_GetAllGamesTables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGamesTables" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_GetAllGamesTables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGamesTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_JoinToTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinToTable" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_JoinToTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinToTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_getPlayerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerInfo" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_getPlayerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_UpdateMoney_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMoney" />
+  </wsdl:message>
+  <wsdl:message name="ITexasHoldemDB_UpdateMoney_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMoneyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITexasHoldemDB">
+    <wsdl:operation name="Register">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/Register" message="tns:ITexasHoldemDB_Register_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/RegisterResponse" message="tns:ITexasHoldemDB_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/Login" message="tns:ITexasHoldemDB_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/LoginResponse" message="tns:ITexasHoldemDB_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="checkIfExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/checkIfExist" message="tns:ITexasHoldemDB_checkIfExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/checkIfExistResponse" message="tns:ITexasHoldemDB_checkIfExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/CreateTable" message="tns:ITexasHoldemDB_CreateTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/CreateTableResponse" message="tns:ITexasHoldemDB_CreateTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/GetID" message="tns:ITexasHoldemDB_GetID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/GetIDResponse" message="tns:ITexasHoldemDB_GetID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGamesTables">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/GetAllGamesTables" message="tns:ITexasHoldemDB_GetAllGamesTables_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/GetAllGamesTablesResponse" message="tns:ITexasHoldemDB_GetAllGamesTables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="JoinToTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/JoinToTable" message="tns:ITexasHoldemDB_JoinToTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/JoinToTableResponse" message="tns:ITexasHoldemDB_JoinToTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPlayerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/getPlayerInfo" message="tns:ITexasHoldemDB_getPlayerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/getPlayerInfoResponse" message="tns:ITexasHoldemDB_getPlayerInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMoney">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITexasHoldemDB/UpdateMoney" message="tns:ITexasHoldemDB_UpdateMoney_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITexasHoldemDB/UpdateMoneyResponse" message="tns:ITexasHoldemDB_UpdateMoney_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HttpBinding" type="tns:ITexasHoldemDB">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Register">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkIfExist">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/checkIfExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTable">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/CreateTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetID">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/GetID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGamesTables">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/GetAllGamesTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinToTable">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/JoinToTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayerInfo">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/getPlayerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMoney">
+      <soap:operation soapAction="http://tempuri.org/ITexasHoldemDB/UpdateMoney" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TexasHoldemDBService">
+    <wsdl:port name="HttpBinding" binding="tns:HttpBinding">
+      <soap:address location="http://192.168.16.5:8400/TexasHoldemDBWCF/TexasHoldemDBService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
